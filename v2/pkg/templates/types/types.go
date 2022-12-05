@@ -24,6 +24,7 @@ const (
 	FileProtocol
 	// name:http
 	HTTPProtocol
+	OfflineHTTPProtocol
 	// name:headless
 	HeadlessProtocol
 	// name:network
@@ -123,7 +124,7 @@ func (holder TypeHolder) MarshalYAML() (interface{}, error) {
 type ProtocolTypes []ProtocolType
 
 func (protocolTypes *ProtocolTypes) Set(values string) error {
-	inputTypes, err := goflags.ToFileNormalizedStringSlice(values)
+	inputTypes, err := goflags.ToStringSlice(values, goflags.FileNormalizedStringSliceOptions)
 	if err != nil {
 		return err
 	}
